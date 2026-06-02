@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Assignment 4 – Application 3: App3_TodoList
 
 ## How to Run
@@ -12,3 +13,6 @@
 
 ## Requirements
 - .NET 8 SDK (https://dotnet.microsoft.com/download/dotnet/8.0)
+=======
+# App3_Todolist
+>>>>>>> 2b62581bf21b747108a295e2bddd56ac86c1061e
