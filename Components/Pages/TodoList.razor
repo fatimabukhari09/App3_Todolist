@@ -1,0 +1,47 @@
+@page "/todo"
+<PageTitle>Todo List</PageTitle>
+<h2>Application 3 – To-Do List with Two-Way Binding</h2>
+
+<div style="max-width:500px">
+    <div class="input-group mb-3">
+        <!-- Two-way binding captures task input -->
+        <input class="form-control" @bind="newTask" @bind:event="oninput" placeholder="Enter a task..." />
+        <button class="btn btn-primary" @onclick="AddTask" disabled="@string.IsNullOrWhiteSpace(newTask)">Add</button>
+    </div>
+
+    @if (tasks.Count == 0)
+    {
+        <p class="text-muted">No tasks yet. Add one above!</p>
+    }
+    else
+    {
+        <!-- One-way binding: displaying list -->
+        <ul class="list-group mb-3">
+            @foreach (var task in tasks)
+            {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    @task
+                    <button class="btn btn-sm btn-danger" @onclick="() => RemoveTask(task)">✕</button>
+                </li>
+            }
+        </ul>
+        <button class="btn btn-warning" @onclick="ClearAll">🗑 Clear All</button>
+    }
+</div>
+
+@code {
+    private string newTask = string.Empty;
+    private List<string> tasks = new();
+
+    private void AddTask()
+    {
+        if (!string.IsNullOrWhiteSpace(newTask))
+        {
+            tasks.Add(newTask.Trim());
+            newTask = string.Empty;
+        }
+    }
+
+    private void RemoveTask(string task) => tasks.Remove(task);
+    private void ClearAll() => tasks.Clear();
+}
